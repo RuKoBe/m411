@@ -1,14 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-import { Divider, Drawer, Link, List, ListItem, ListItemText, makeStyles } from '@material-ui/core';
-import Router from './components/ugly/Router';
-import { useState } from 'react';
+import logo from "./logo.svg";
+import "./App.css";
+import {
+  Divider,
+  Drawer,
+  Link,
+  List,
+  ListItem,
+  ListItemText,
+  makeStyles,
+} from "@material-ui/core";
+import Router from "./components/ugly/Router";
+import { useState } from "react";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    display: 'flex',
+    display: "flex",
   },
   appBar: {
     width: `calc(100% - ${drawerWidth}px)`,
@@ -36,28 +44,46 @@ function App() {
   const classes = useStyles();
   const [page, setPage] = useState("collatz");
 
-
   return (
     <>
-    <Drawer
-      variant="permanent"
-      anchor="left"
-      classes={{
-        paper: classes.drawerPaper,
-      }}
-    >
-      <List>
-        <ListItem >
-          <h2>M411 by <Link href="mailto:ruben.kober@pm.me">Ruby</Link></h2>
-        </ListItem>
-        <ListItem button>
-          <ListItemText>Collatz Problem</ListItemText>
-        </ListItem>
-      </List>
-    </Drawer>
-    <div style={{marginLeft: 240, padding: 10}}>
-      <Router page={page}/>
-    </div>
+      <Drawer
+        variant="permanent"
+        anchor="left"
+        classes={{
+          paper: classes.drawerPaper,
+        }}
+      >
+        <List>
+          <ListItem>
+            <h2>M411</h2>
+          </ListItem>
+          <ListItem
+            button
+            onClick={() => {
+              setPage("collatz");
+            }}
+          >
+            <ListItemText>Collatz Vermutung</ListItemText>
+          </ListItem>
+          <ListItem
+            button
+            onClick={() => {
+              setPage("gameoflife");
+            }}
+          >
+            <ListItemText>Game of Life</ListItemText>
+          </ListItem>
+          <ListItem>
+            <p>
+              &copy; {new Date().getFullYear()}{" "}
+              <Link href="mailto:ruben.kober@pm.me">Ruben Kober</Link>
+            </p>
+          </ListItem>
+        </List>
+      </Drawer>
+      <div style={{ marginLeft: 240, padding: 10 }}>
+        <Router page={page} />
+      </div>
     </>
   );
 }
