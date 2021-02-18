@@ -36,7 +36,7 @@ const Code = ({ code, callback }) => {
   };
 
   const clear = () => {
-    setO(["Output"]);
+    setO(["Output"])
     setList(
       <VirtualList
         width="100%"
